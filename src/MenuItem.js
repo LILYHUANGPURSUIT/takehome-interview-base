@@ -1,7 +1,9 @@
 import './MenuItem.css';
 
-const MenuItem = ({ item }) => {
-  const { id, name, price, shortDescription } = item;
+const MenuItem = ({ item, show, handleOpenDescription}) => {
+  const { id, name, price, shortDescription, longDescription } = item;
+  // const [show, setShow] = useState(false);
+
   return (
     <section className="menuItem">
       <ul>
@@ -10,6 +12,12 @@ const MenuItem = ({ item }) => {
         <li>price: ${price} </li>
         <li>{shortDescription}</li>
       </ul>
+      <button onClick={() => handleOpenDescription(id)}>{show ? "show less" : "show more"}</button>
+      {show && 
+        <div >
+          {longDescription}
+        </div>
+      }
     </section>
   );
 };
