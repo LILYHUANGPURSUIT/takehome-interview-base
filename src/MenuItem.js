@@ -1,7 +1,7 @@
 import './MenuItem.css';
 
 const MenuItem = ({ item, show, handleOpenDescription}) => {
-  const { id, name, price, shortDescription, longDescription } = item;
+  const { id, name, price, tags, shortDescription, longDescription } = item;
   // const [show, setShow] = useState(false);
 
   return (
@@ -11,6 +11,7 @@ const MenuItem = ({ item, show, handleOpenDescription}) => {
         <li>name: {name} </li>
         <li>price: ${price} </li>
         <li>{shortDescription}</li>
+        <li>tags: {tags.join(", ")}</li>
       </ul>
       <button onClick={() => handleOpenDescription(id)}>{show ? "show less" : "show more"}</button>
       {show && 
