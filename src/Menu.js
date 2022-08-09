@@ -1,6 +1,6 @@
 import { data } from './data';
 import './Menu.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MenuItem from './MenuItem';
 
 const Menu = () => {
@@ -18,32 +18,36 @@ const Menu = () => {
       setOpenIds([...openIds, id])
     }
   }
+  
+    const handleFilterTags = (tag) => {
+      if(!filteredTags.includes(tag)){
+        setFilteredTags([...filteredTags, tag]);
+      } else {
+        setFilteredTags(filteredTags.filter(t=> t !== tag));
+      }
+    }
 
-  // const handleFilterTags = (tag) => {
-  //   setFilteredTags([...filteredTags, tag]);
+    useEffect(()=>{
+      let filteredItems = data.filter(item => filteredTags.every(filteredTag => item.tags.includes(filteredTag)))
+      setItems(filteredItems);
+    },[filteredTags])
 
-  //   for(let item of data) {
-  //     for (let filteredTag of filteredTags) {
-  //       if(item.tags.includes(filteredTag)) {
-
-  //         // how to update items list which depends on the above condition
-  //         setItems([...item])
-  //       }
-  //     }
-  //   }
-  // }
 const handleSubmit = (e) => {
     setSearchTerm(e.target.value)
-    setItems(data.filter(item => item.longDescription.toLowerCase().includes(searchTerm.toLowerCase())))
   }
-  
- 
-console.log(items)
+    
+  useEffect(()=> {
+    setItems(data.filter(item => item.longDescription.toLowerCase().includes(searchTerm.toLowerCase())))
+  },[searchTerm])
+    
+    
+
+  // console.log("Render")
   return (
     <article className="menu">
       {tags.map((tag,index) => (
-        // <button key={index} onClick={() => handleFilterTags(tag)}>
-        <button key={index} onClick={() => setItems(data.filter(item => item.tags.includes(tag)))}>
+        //  <button key={index} onClick={() => setItems(data.filter(item => item.tags.includes(tag)))}></button>
+        <button key={index} onClick={() => handleFilterTags(tag)}>
           {tag}
         </button>
       ))}
