@@ -2,3 +2,7 @@
     padding: 3rem;
     max-width: 80%;
 }
+
+.menu__tag__btu:active{
+    background-color: bisque;
+}

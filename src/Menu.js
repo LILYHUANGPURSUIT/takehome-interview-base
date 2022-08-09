@@ -47,7 +47,7 @@ const handleSubmit = (e) => {
     <article className="menu">
       {tags.map((tag,index) => (
         //  <button key={index} onClick={() => setItems(data.filter(item => item.tags.includes(tag)))}></button>
-        <button key={index} onClick={() => handleFilterTags(tag)}>
+        <button className="menu__tag__btu" key={index} onClick={() => handleFilterTags(tag)}>
           {tag}
         </button>
       ))}
