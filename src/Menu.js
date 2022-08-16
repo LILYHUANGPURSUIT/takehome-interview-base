@@ -40,18 +40,23 @@ const handleSubmit = (e) => {
     setItems(data.filter(item => item.longDescription.toLowerCase().includes(searchTerm.toLowerCase())))
   },[searchTerm])
     
-    
+   
 
   // console.log("Render")
   return (
     <article className="menu">
       {tags.map((tag,index) => (
         //  <button key={index} onClick={() => setItems(data.filter(item => item.tags.includes(tag)))}></button>
-        <button className="menu__tag__btu" key={index} onClick={() => handleFilterTags(tag)}>
+        <button className={filteredTags.includes(tag) ? "menu__tag__btu-selected" : "menu__tag__btu"} key={index} onClick={() => handleFilterTags(tag)}>
           {tag}
         </button>
       ))}
       <h1>Our Menu</h1>
+      {/* <select id="sorted__pric">
+        <option>Sort By</option>
+        <option value="most" onClick={(e)=>handleSortedByPrice(e)}>High to Low</option>
+        <option value="least" onClick={(e)=>handleSortedByPrice(e)}>Low to High</option>
+      </select> */}
       <input 
         onChange={(e) => handleSubmit(e)}
         value={searchTerm}

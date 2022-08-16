@@ -6,3 +6,7 @@
 .menu__tag__btu:active{
     background-color: bisque;
 }
+
+.menu__tag__btu-selected {
+    background-color: rgb(159, 159, 216);
+}
